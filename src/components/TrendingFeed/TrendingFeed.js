@@ -54,15 +54,15 @@ const TrendingFeed = () => {
             {
                 trendingPosts.map(post =>
                     <Container key={post.id}>
-                        <Row className="justify-content-sm-center my-5">
+                        <Row className="justify-content-center my-5">
 
-                            <Col sm="auto">
+                            <Col sm="auto" xs={12} className="text-center">
                                 <video height={post.videoMeta.height * 0.4} width={post.videoMeta.width * 0.4} controls loop autoPlay="autoplay" muted>
                                     <source src={post.videoUrl} type="Video/mp4"></source>
                                 </video>
                             </Col>
 
-                            <Col sm="4" className="py-3">
+                            <Col sm={4} xs={12} className="py-3">
                                 <Container className="videoAuthor px-0 pb-3">
                                     <Link className="authorLink" to={"/tiktuk/" + post.authorMeta.name}>
                                         <Row>
