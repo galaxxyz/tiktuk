@@ -7,7 +7,7 @@ const NavBar = () => {
         <Navbar bg="light" fixed="top" >
             <Container>
                 <Nav className='m-auto py-2'>
-                    <Nav.Link><Link to='/' className="navLink">Trending</Link></Nav.Link>
+                    <Nav.Link><Link to='/tiktuk/' className="navLink">Trending</Link></Nav.Link>
                 </Nav>
             </Container>
         </Navbar>

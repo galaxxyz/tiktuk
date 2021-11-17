@@ -64,7 +64,7 @@ const TrendingFeed = () => {
 
                             <Col sm="4" className="py-3">
                                 <Container className="videoAuthor px-0 pb-3">
-                                    <Link className="authorLink" to={"/" + post.authorMeta.name}>
+                                    <Link className="authorLink" to={"/tiktuk/" + post.authorMeta.name}>
                                         <Row>
                                             <Col xs="auto">
                                                 <img className="AvatarXS" src={post.authorMeta.avatar} />

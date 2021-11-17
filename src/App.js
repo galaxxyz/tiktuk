@@ -10,8 +10,8 @@ function App() {
       <div className="App">
         <NavBar />
         <Routes>
-          <Route path="/" exact element={<TrendingFeed />} />
-          <Route path="/:nickname" exact element={<Profile />} />
+          <Route path="/tiktuk" exact element={<TrendingFeed />} />
+          <Route path="/tiktuk/:nickname" exact element={<Profile />} />
         </Routes>
       </div >
     </Router >
