@@ -1,19 +1,13 @@
 import './Profile.css';
 import { useState, useEffect } from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faUsers, faPlay, faEye } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faUsers, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from "react-router-dom";
-import PaginationComponent from '../PaginationComponent';
+import PaginationComponent from '../PaginationComponent/PaginationComponent';
+import UserFeed from '../UserFeed/UserFeed';
 import feedStub from '../../assets/user-feed.json'; // stub
-import videoStub from '../../assets/videoStub.png';
-
-const convertNumber = (number) => {
-    if (number < 1000) return number;
-    if (number >= 1000 && number < 100000) return Math.round(number / 1000) + "." + Math.round(number / 100) % 10 + "k";
-    if (number >= 100000 && number < 1000000) return Math.round(number / 1000) + "k";
-    if (number >= 1000000) return Math.round(number / 1000000) + "." + Math.round(number / 100000) % 10 + "M";
-}
+import { convertNumber } from '../../functions/convertNumber'
 
 const Profile = () => {
     const { nickname } = useParams();
@@ -125,26 +119,3 @@ const Profile = () => {
 }
 
 export default Profile;
-
-/**/
-
-
-const UserFeed = ({ feed, loading }) => {
-    if (loading) return (
-        <div class="text-center pt-5">
-            <div class="spinner-border" role="status">
-                <span class="sr-only"></span>
-            </div>
-        </div>
-    );
-    return (
-        <Row className="justify-content-center" md={7}>
-            {feed.map(post =>
-                <Col className="my-3" sm="auto" xs="auto">
-                    <img className="video" src={videoStub} />
-                    <div className="text-center"><FontAwesomeIcon icon={faEye} size="xs" className="iconPlayCount" /><p className="iconPlayCount">{' ' + convertNumber(post.stats.playCount)}</p></div>
-                </Col>
-            )}
-        </Row>
-    )
-}
