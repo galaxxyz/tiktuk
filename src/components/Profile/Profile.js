@@ -4,6 +4,7 @@ import { Container, Row, Col, Image } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faUsers, faPlay, faEye } from '@fortawesome/free-solid-svg-icons'
 import { useParams } from "react-router-dom";
+import PaginationComponent from '../PaginationComponent';
 import feedStub from '../../assets/user-feed.json'; // stub
 import videoStub from '../../assets/videoStub.png';
 
@@ -19,6 +20,8 @@ const Profile = () => {
     const [info, setInfo] = useState('');
     const [feed, setFeed] = useState('');
     const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage, setPostsPerPage] = useState(4);
 
     const axios = require("axios").default;
     const optionsInfo = {
@@ -68,8 +71,14 @@ const Profile = () => {
 
     }, [])*/
 
+    // get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = feed.slice(indexOfFirstPost, indexOfLastPost);
 
-    // uses stub
+    // change page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
 
     if (loading) return (
         <div class="text-center pt-5">
@@ -103,13 +112,12 @@ const Profile = () => {
                     </Container>
                 </Col>
             </Row>
-            <Row className="justify-content-center" md={7}>
-                {feed.map(post =>
-                    <Col className="my-3" sm="auto" xs="auto">
-                        <img className="video" src={videoStub} />
-                        <div className="text-center"><FontAwesomeIcon icon={faEye} size="xs" className="iconPlayCount" /><p className="iconPlayCount">{' ' + convertNumber(post.stats.playCount)}</p></div>
-                    </Col>
-                )}
+            {console.log(postsPerPage, " ", feed.length)}
+            <UserFeed feed={currentPosts} loading={loading} />
+            <Row className="justify-content-center">
+                <Col sm="auto">
+                    <PaginationComponent postsPerPage={postsPerPage} totalPosts={feed.length} paginate={paginate} currentPage={currentPage} />
+                </Col>
             </Row>
         </Container>
     )
@@ -119,3 +127,24 @@ const Profile = () => {
 export default Profile;
 
 /**/
+
+
+const UserFeed = ({ feed, loading }) => {
+    if (loading) return (
+        <div class="text-center pt-5">
+            <div class="spinner-border" role="status">
+                <span class="sr-only"></span>
+            </div>
+        </div>
+    );
+    return (
+        <Row className="justify-content-center" md={7}>
+            {feed.map(post =>
+                <Col className="my-3" sm="auto" xs="auto">
+                    <img className="video" src={videoStub} />
+                    <div className="text-center"><FontAwesomeIcon icon={faEye} size="xs" className="iconPlayCount" /><p className="iconPlayCount">{' ' + convertNumber(post.stats.playCount)}</p></div>
+                </Col>
+            )}
+        </Row>
+    )
+}
