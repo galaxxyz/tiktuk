@@ -1,0 +1,28 @@
+video {
+    border-radius: 13px;
+  }
+
+  
+
+.AvatarXS {
+    border-radius: 100%;
+    width: 50px;
+  }
+  .authorLink {
+    text-decoration: none;
+  }
+  .authorName {
+    margin: 0;
+    font-size: 105%;
+    font-weight: bold;
+    color: black;
+    text-decoration: underline;
+  }
+  .authorName:hover {
+    color: rgb(218, 28, 28);
+  }
+  .authorNickName {
+    margin: 0;
+    font-size: 85%;
+    color: rgb(148, 141, 141);
+  }

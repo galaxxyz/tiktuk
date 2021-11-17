@@ -1,0 +1,9 @@
+.navLink {
+    display: inline-block;
+    text-decoration: none;
+    color: black
+}
+.navLink:hover {
+    color: black;
+    transform: scale(1.1);
+}

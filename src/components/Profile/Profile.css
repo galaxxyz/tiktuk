@@ -1,0 +1,17 @@
+.Avatar {
+    max-width: 200px;
+}
+
+.userNickName {
+    color: rgb(148, 141, 141);
+}
+
+.userName {
+    font-size: 120%;
+}
+
+.userSignature {
+    max-width: 400px;
+    background-color: rgb(243, 243, 243);
+    border-radius: 10px;
+}
